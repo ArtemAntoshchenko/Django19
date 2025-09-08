@@ -81,10 +81,18 @@ def index(request):
     # apple_farm=Metadata(store=farm, product=apple, quantity=100, price=45)
     # apple_farm.save()
 
-    coffee_price_up=coffee.store_set.all()
-    for i in coffee_price_up:
-        i.metadata__price*1,1
-        i.update()
+    # coffee_price_up=coffee.store_set.all()
+    # for i in coffee_price_up:
+    #     i.multiply=i.metadata_price*0.1
+    #     i.save()
+    #     # print(i.metadata__price)
+    #     # i.metadata__price*1.1
+    #     # i.update()
+    coffe_metadata=Metadata.objects.filter(product=coffee)
+    for i in coffe_metadata:
+        i.price = float(i.price)*0.1
+        i.save()
+
     water_count=water.store_set.all().aggregate(Sum('metadata__quantity'))
     print(water_count)
 
